@@ -46,5 +46,12 @@ $(document).ready(function(){
         }
     });
 
+    $('.fa-circle').click(function(){
+        console.log($(this));
+        $(".active").removeClass("active");
+        $(this).addClass("active");
+        
+    })
+
 
 })
