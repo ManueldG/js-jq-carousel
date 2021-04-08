@@ -14,14 +14,37 @@ Consiglio
 Come sempre è importante usare la documentazione di jQuery per scoprire/rinfrescare la memoria sulle funzioni che potrebbero esserci utili.*/
 
 $(document).ready(function(){
-    $( ".next").click(function(){
-        console.log($("first"));
-        $(".active").removeClass("active").next().addClass("active");
+
+    
+    $(".next").click(function(){
+        console.log($(".active")[0].className);
+        if (!($(".active")[0].className).includes("last"))
+        {
+            $(".active").removeClass("active").next().addClass("active");
+        }
+        
+        else{
+            console.log($('.last'));
+            $(".last").removeClass("active");
+            $(".first").addClass("active");
+        }
+        
     });
 
     $( ".prev").click(function(){
-        console.log($("first"));
-        $(".active").removeClass("active").prev().addClass("active");
+        
+        console.log($(".active")[0].className);
+        if (!($(".active")[0].className).includes("first"))
+        {
+            $(".active").removeClass("active").prev().addClass("active");
+        }
+        
+        else{
+            console.log($('.last'));
+            $(".first").removeClass("active");
+            $(".last").addClass("active");
+        }
     });
+
 
 })
