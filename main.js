@@ -15,45 +15,67 @@ Come sempre è importante usare la documentazione di jQuery per scoprire/rinfres
 
 $(document).ready(function(){
 
-    
+    $(document).keydown(function(e){
+        if (e.originalEvent.keyCode===39)
+            next();
+        if (e.originalEvent.keyCode===37)
+            prev();
+    })
+
     $(".next").click(function(){
-        console.log($(".active")[0].className);
-        if (!($(".active")[0].className).includes("last"))
-        {
-            $(".active").removeClass("active").next().addClass("active");
-        }
-        
-        else{
-            console.log($('.last'));
-            $(".last").removeClass("active");
-            $(".first").addClass("active");
-        }
-        
+        next();        
     });
 
     $( ".prev").click(function(){
-        
-        console.log($(".active")[0].className);
-        if (!($(".active")[0].className).includes("first"))
-        {
-            $(".active").removeClass("active").prev().addClass("active");
-        }
-        
-        else{
-            console.log($('.last'));
-            $(".first").removeClass("active");
-            $(".last").addClass("active");
-        }
+        prev();        
     });
 
     $('.fa-circle').click(function(){
-        console.log($(this).index());
+        
         $(".active").removeClass("active");
         $(this).addClass("active");
-        console.log($("img").get($(this).index()));
-        $('img').get($(this).index()).addClass("active");
+        var index = ($(this).index()+1);
+        var image= $("img:nth-of-type("+index+")")/*.get(index) */;
+        
+        //$('img').get($(this).index()).addClass("active");
+        console.log(image);
+        image.addClass("active");
         
     })
 
 
 })
+
+function next(){
+    console.log($(".active")[0].className);
+    if (!($(".active")[0].className).includes("last"))
+        {
+            $(".active").removeClass("active").next().addClass("active");
+        }
+    
+    else
+        {
+            console.log($('.last'));
+            $(".last").removeClass("active");
+            $(".first").addClass("active");
+        }
+}
+
+
+function prev(){
+    console.log($(".active")[0].className);
+    if (!($(".active")[0].className).includes("first"))
+        {
+            $(".active").removeClass("active").prev().addClass("active");
+        }
+        
+    else
+        {
+            console.log($('.last'));
+            $(".first").removeClass("active");
+            $(".last").addClass("active");
+        }
+
+}
+
+
