@@ -47,9 +47,11 @@ $(document).ready(function(){
     });
 
     $('.fa-circle').click(function(){
-        console.log($(this));
+        console.log($(this).index());
         $(".active").removeClass("active");
         $(this).addClass("active");
+        console.log($("img").get($(this).index()));
+        $('img').get($(this).index()).addClass("active");
         
     })
 
